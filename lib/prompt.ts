@@ -88,7 +88,7 @@ YAPI — Bu 7 başlığı kullan (sırasıyla):
 - Aldatma, sadakat, kıskançlık eğilimleri
 - Ayrılık riski ve nedeni
 - Evlilik zamanı için sezgisel dönemler
-(3-4 paragraf)
+(5-6 paragraf — uzun, derin ve detaylı; her bir alt başlığa hakkını ver)
 
 ## ÇOCUK VE YUVA
 - Çocuk kısmeti
@@ -104,7 +104,9 @@ YAPI — Bu 7 başlığı kullan (sırasıyla):
 - Parayı nasıl çektiği veya kaybettiği
 - Para üzerindeki gizli düğümler
 - Bereket noktaları
-(2-3 paragraf)
+- Mesleki çağrılar ve uygun olmayan alanlar
+- Ortaklık, borç, miras gibi konularda kaderin tutumu
+(4-5 paragraf — uzun, somut, detaylı)
 
 GENEL KURALLAR:
 - Kesin bilim dili kullanma
