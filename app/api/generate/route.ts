@@ -8,8 +8,7 @@ export const maxDuration = 60;
 const encoder = new TextEncoder();
 
 function sseEvent(event: string, data: unknown): Uint8Array {
-  const payload = typeof data === "string" ? data : JSON.stringify(data);
-  return encoder.encode(`event: ${event}\ndata: ${payload}\n\n`);
+  return encoder.encode(`event: ${event}\ndata: ${JSON.stringify(data)}\n\n`);
 }
 
 export async function POST(req: NextRequest) {
