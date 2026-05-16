@@ -3,7 +3,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { hesaplaTumVeriler, buildPrompt, type KullaniciVerisi } from "@/lib/prompt";
 
 export const runtime = "nodejs";
-export const maxDuration = 800;
+export const maxDuration = 300;
 
 const encoder = new TextEncoder();
 
