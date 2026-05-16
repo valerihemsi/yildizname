@@ -61,7 +61,7 @@ YAPI — Bu 7 başlığı kullan (sırasıyla):
 - Öfke, sezgi, kin, merhamet yapısı
 - Hayattaki ana sınavı
 - Ruhsal yükü ve kader izi
-(3-4 paragraf, derin)
+(2-3 paragraf, derin ve özlü)
 
 ## SAĞLIK VE ENERJİ
 - Bedende zayıf düşen bölgeler
@@ -69,14 +69,14 @@ YAPI — Bu 7 başlığı kullan (sırasıyla):
 - Nazar, ağırlık veya iç sıkışması belirtileri
 - Uykusuzluk, stres, iç daralması eğilimleri
 - Enerjiyi toparlayan unsurlar
-(3-4 paragraf)
+(2-3 paragraf)
 
 ## KADER YOLU
 - Hayatın dönüm noktaları
 - Asıl sınav
 - Gizli yükseliş dönemleri
 - Tekrar eden döngüler
-(3-4 paragraf)
+(2-3 paragraf)
 
 ## EVLİLİK VE AŞK
 - Evlilik enerjisi
@@ -88,7 +88,7 @@ YAPI — Bu 7 başlığı kullan (sırasıyla):
 - Aldatma, sadakat, kıskançlık eğilimleri
 - Ayrılık riski ve nedeni
 - Evlilik zamanı için sezgisel dönemler
-(4-5 paragraf)
+(3-4 paragraf)
 
 ## ÇOCUK VE YUVA
 - Çocuk kısmeti
@@ -97,14 +97,14 @@ YAPI — Bu 7 başlığı kullan (sırasıyla):
 - Erkek/dişi enerji
 - Anne/baba olarak kader rolü
 - Hanedeki huzur ve bereket
-(3-4 paragraf)
+(2-3 paragraf)
 
 ## KARİYER VE PARA
 - Yükselme alanları
 - Parayı nasıl çektiği veya kaybettiği
 - Para üzerindeki gizli düğümler
 - Bereket noktaları
-(3-4 paragraf)
+(2-3 paragraf)
 
 GENEL KURALLAR:
 - Kesin bilim dili kullanma
@@ -113,7 +113,7 @@ GENEL KURALLAR:
 - Kişinin kaderindeki karanlık tarafları gizleme
 - Harf, gezegen, unsur, çakra metaforları serbest
 - Çıktı: düz markdown — başlıklar ## ile, vurgular **kalın**, italic *eğik*
-- İSMİN SIRRI hariç her başlık altında 3-4 paragraf yaz
+- Paragraflar uzun olmasın — özlü, yoğun, gereksiz tekrarsız
 
 Yoruma "## İSMİN SIRRI" başlığıyla başla. Açılış paragrafı, takdim cümlesi, selamlama, hitap KOYMA.`;
 

@@ -3,7 +3,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { hesaplaTumVeriler, buildPrompt, type KullaniciVerisi } from "@/lib/prompt";
 
 export const runtime = "nodejs";
-export const maxDuration = 60;
+export const maxDuration = 800;
 
 const encoder = new TextEncoder();
 
@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
 
         const messageStream = client.messages.stream({
           model: "claude-sonnet-4-6",
-          max_tokens: 8000,
+          max_tokens: 5000,
           system,
           messages: [{ role: "user", content: user }],
         });
