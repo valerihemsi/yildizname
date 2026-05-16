@@ -4,25 +4,15 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import LoadingAnimation from "@/components/LoadingAnimation";
 import Disclaimer from "@/components/Disclaimer";
-
-interface Veriler {
-  ebced: {
-    isim: { isim: string; arapcaYazim: string; toplamDeger: number };
-    anne: { isim: string; arapcaYazim: string; toplamDeger: number };
-    birlesikToplam: number;
-  };
-  kaderYolu: { kaderYoluSayisi: number; isMasterNumber: boolean };
-  unsur: { baskinUnsur: string; ikinciUnsur: string; eksikUnsur: string | null };
-  gezegen: { dogumGunuGezegeni: string; dogumSaatiGezegeni: string; gunAdi: string };
-  saat: { gunOgun: string; vaktiSembolik: string };
-}
+import Chatbot from "@/components/Chatbot";
+import type { HesaplananVeriler } from "@/lib/prompt";
 
 export default function RaporPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [streaming, setStreaming] = useState(false);
   const [yorum, setYorum] = useState("");
-  const [veriler, setVeriler] = useState<Veriler | null>(null);
+  const [veriler, setVeriler] = useState<HesaplananVeriler | null>(null);
   const [hata, setHata] = useState<string | null>(null);
   const startedRef = useRef(false);
 
@@ -80,7 +70,7 @@ export default function RaporPage() {
             if (!dataStr) continue;
 
             if (eventName === "veriler") {
-              setVeriler(JSON.parse(dataStr) as Veriler);
+              setVeriler(JSON.parse(dataStr) as HesaplananVeriler);
             } else if (eventName === "delta") {
               const text = JSON.parse(dataStr) as string;
               if (firstDelta) {
@@ -198,6 +188,10 @@ export default function RaporPage() {
             </div>
           )}
         </article>
+
+        {!streaming && veriler && yorum && (
+          <Chatbot veriler={veriler} yorum={yorum} />
+        )}
 
         <Disclaimer />
 
