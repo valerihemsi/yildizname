@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Disclaimer from "@/components/Disclaimer";
 
@@ -9,6 +10,7 @@ export default function HomePage() {
   const [showForm, setShowForm] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [hata, setHata] = useState<string | null>(null);
+  const [rizaVerildi, setRizaVerildi] = useState(false);
   const [form, setForm] = useState({
     isim: "",
     anneAdi: "",
@@ -18,6 +20,10 @@ export default function HomePage() {
   });
 
   const submitForm = () => {
+    if (!rizaVerildi) {
+      setHata("Devam etmek için onay kutusunu işaretlemeniz gerekir.");
+      return;
+    }
     setHata(null);
     setSubmitting(true);
     try {
@@ -162,13 +168,48 @@ export default function HomePage() {
                 required
               />
 
+              <div className="pt-2">
+                <label className="riza-kutu">
+                  <input
+                    type="checkbox"
+                    checked={rizaVerildi}
+                    onChange={(e) => setRizaVerildi(e.target.checked)}
+                  />
+                  <span className="riza-kutu-isaret" aria-hidden="true" />
+                  <span className="riza-kutu-metin">
+                    18 yaşımı doldurdum. Yukarıda girdiğim verilerin sembolik
+                    yorum üretmek amacıyla işlenmesine ve bu amaçla Anthropic
+                    (ABD) sunucularına aktarılmasına{" "}
+                    <strong className="text-vurgu/90">açık rıza</strong>{" "}
+                    veriyorum. Bunun kehanet, dînî fetva ya da tıbbî teşhis
+                    olmadığını, yorumun yapay zekâ tarafından üretildiğini
+                    anlıyorum.{" "}
+                    <Link
+                      href="/aydinlatma"
+                      target="_blank"
+                      className="riza-link"
+                    >
+                      Aydınlatma metni
+                    </Link>
+                    {" · "}
+                    <Link
+                      href="/kosullar"
+                      target="_blank"
+                      className="riza-link"
+                    >
+                      Kullanım koşulları
+                    </Link>
+                  </span>
+                </label>
+              </div>
+
               {hata && (
                 <p className="text-rose-300/70 text-sm italic text-center">{hata}</p>
               )}
 
               <button
                 type="submit"
-                disabled={submitting}
+                disabled={submitting || !rizaVerildi}
                 className="group relative w-full mt-8 py-4 text-metin text-xs tracking-[0.5em] uppercase font-light hover:text-vurgu transition-all duration-700 disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 <span className="absolute inset-0 border border-vurgu/25 rounded-full group-hover:border-vurgu/60 transition-all duration-700" />

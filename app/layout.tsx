@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Cinzel } from "next/font/google";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -29,7 +30,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr" className={`${cormorant.variable} ${cinzel.variable}`} suppressHydrationWarning>
-      <body className="antialiased" suppressHydrationWarning>{children}</body>
+      <body className="antialiased" suppressHydrationWarning>
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
