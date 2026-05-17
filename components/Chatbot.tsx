@@ -113,23 +113,23 @@ export default function Chatbot({ veriler, yorum }: ChatbotProps) {
   };
 
   return (
-    <section className="mt-16 giris-3">
-      <div className="text-center mb-10">
-        <div className="flex items-center justify-center gap-3 mb-6">
-          <div className="hat-yatay w-16" />
-          <div className="w-1 h-1 rounded-full bg-vurgu/60" />
-          <div className="hat-yatay w-16" />
+    <section className="mt-24 mb-8 giris-3">
+      <div className="text-center mb-12">
+        <div className="flex items-center justify-center gap-4 mb-8">
+          <div className="hat-yatay w-28 md:w-36" />
+          <div className="cember-isaret" />
+          <div className="hat-yatay w-28 md:w-36" />
         </div>
-        <h2 className="font-display text-xl text-metin tracking-[0.3em] uppercase font-light">
+        <h2 className="font-display text-3xl md:text-4xl text-metin tracking-[0.3em] uppercase font-light parla-yumusak">
           Sırrı Derinleştir
         </h2>
-        <p className="text-metin-soluk/60 text-xs mt-3 italic font-light">
-          kendi sorunu yaz
+        <p className="text-metin-soluk/70 text-sm md:text-base mt-6 italic font-light max-w-lg mx-auto leading-relaxed">
+          yıldıznamede sezdiğin, içine düşen, anlamak istediğin neyse — sor.
         </p>
       </div>
 
       {messages.length > 0 && (
-        <div className="cam rounded-2xl p-6 md:p-10 mb-8 space-y-8">
+        <div className="cam rounded-2xl p-6 md:p-10 mb-10 space-y-8 max-w-3xl mx-auto">
           {messages.map((msg, i) => (
             <div key={i}>
               {msg.role === "user" ? (
@@ -160,7 +160,7 @@ export default function Chatbot({ veriler, yorum }: ChatbotProps) {
       )}
 
       {hata && (
-        <p className="text-rose-300/70 text-sm italic text-center mb-6">{hata}</p>
+        <p className="text-rose-300/70 text-sm italic text-center mb-6 max-w-2xl mx-auto">{hata}</p>
       )}
 
       <form
@@ -168,9 +168,12 @@ export default function Chatbot({ veriler, yorum }: ChatbotProps) {
           e.preventDefault();
           sendMessage(input);
         }}
-        className="flex gap-3 items-end max-w-2xl mx-auto"
+        className="max-w-3xl mx-auto"
       >
-        <div className="flex-1">
+        <div className="cam rounded-2xl p-6 md:p-8 relative">
+          <p className="text-vurgu/60 text-[10px] tracking-[0.35em] uppercase mb-4 font-light text-center">
+            ✦ sorunu yaz ✦
+          </p>
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -180,19 +183,35 @@ export default function Chatbot({ veriler, yorum }: ChatbotProps) {
                 sendMessage(input);
               }
             }}
-            placeholder="kendi sorunu yaz…"
-            rows={1}
+            placeholder="ismimin sırrında benden saklanan ne var?"
+            rows={3}
             disabled={streaming}
-            className="w-full bg-transparent border-b border-vurgu/20 px-1 py-2.5 text-metin placeholder-metin-soluk/30 focus:outline-none focus:border-vurgu/60 transition-all duration-500 font-light resize-none disabled:opacity-40"
+            className="w-full bg-transparent border border-vurgu/15 rounded-lg px-5 py-4 text-metin placeholder-metin-soluk/30 focus:outline-none focus:border-vurgu/50 focus:bg-vurgu/[0.02] transition-all duration-500 font-light text-base md:text-lg leading-relaxed resize-none disabled:opacity-40 italic"
           />
+          <div className="flex items-center justify-between mt-5">
+            <p className="text-metin-soluk/40 text-[10px] tracking-[0.25em] uppercase font-light">
+              {streaming ? "müneccim düşünüyor" : "↵ ile gönder"}
+            </p>
+            <button
+              type="submit"
+              disabled={streaming || !input.trim()}
+              className="group inline-flex items-center gap-2.5 px-6 py-3 text-[11px] tracking-[0.4em] uppercase font-light border border-vurgu/50 text-vurgu hover:border-vurgu hover:bg-vurgu/[0.08] transition-all duration-500 rounded-sm disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:border-vurgu/50"
+            >
+              {streaming ? (
+                <>
+                  <span className="w-1 h-1 rounded-full bg-vurgu nefes" />
+                  <span>aktarılıyor</span>
+                  <span className="w-1 h-1 rounded-full bg-vurgu nefes" />
+                </>
+              ) : (
+                <>
+                  <span>sırra sor</span>
+                  <span className="opacity-70 group-hover:translate-x-0.5 transition-transform duration-500">→</span>
+                </>
+              )}
+            </button>
+          </div>
         </div>
-        <button
-          type="submit"
-          disabled={streaming || !input.trim()}
-          className="text-vurgu/80 hover:text-vurgu text-xs tracking-[0.3em] uppercase font-light disabled:opacity-30 disabled:cursor-not-allowed transition-colors pb-2"
-        >
-          {streaming ? "..." : "sor"}
-        </button>
       </form>
     </section>
   );
