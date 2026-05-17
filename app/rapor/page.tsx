@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import LoadingAnimation from "@/components/LoadingAnimation";
 import Disclaimer from "@/components/Disclaimer";
 import Chatbot from "@/components/Chatbot";
+import SectionedRapor from "@/components/SectionedRapor";
 import type { HesaplananVeriler } from "@/lib/prompt";
 
 export default function RaporPage() {
@@ -173,21 +174,9 @@ export default function RaporPage() {
           </div>
         )}
 
-        <article className="cam rounded-2xl p-8 md:p-14 mb-12 giris-3 relative">
-          <div
-            className="rapor-icerik"
-            dangerouslySetInnerHTML={{ __html: markdownToHtml(yorum) }}
-          />
-          {streaming && (
-            <div className="flex items-center justify-center gap-2 mt-8 opacity-60">
-              <span className="w-1 h-1 rounded-full bg-vurgu nefes" />
-              <span className="text-vurgu/60 text-[10px] tracking-[0.4em] uppercase font-light">
-                yazılıyor
-              </span>
-              <span className="w-1 h-1 rounded-full bg-vurgu nefes" />
-            </div>
-          )}
-        </article>
+        {veriler && (
+          <SectionedRapor yorum={yorum} streaming={streaming} veriler={veriler} />
+        )}
 
         {!streaming && veriler && yorum && (
           <Chatbot veriler={veriler} yorum={yorum} />
@@ -223,25 +212,3 @@ function DataItem({ label, value, sub }: { label: string; value: string; sub?: s
   );
 }
 
-function markdownToHtml(md: string): string {
-  return md
-    .replace(/^## (.+)$/gm, "<h2>$1</h2>")
-    .replace(/^### (.+)$/gm, "<h3>$1</h3>")
-    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-    .replace(/\*(.+?)\*/g, "<em>$1</em>")
-    .replace(/^- (.+)$/gm, "<li>$1</li>")
-    .replace(/(<li>.*<\/li>\n?)+/gs, (m) => `<ul>${m}</ul>`)
-    .split(/\n\n+/)
-    .map((block) => {
-      const trimmed = block.trim();
-      if (
-        trimmed.startsWith("<h") ||
-        trimmed.startsWith("<ul") ||
-        trimmed.startsWith("<li")
-      ) {
-        return trimmed;
-      }
-      return `<p>${trimmed.replace(/\n/g, "<br/>")}</p>`;
-    })
-    .join("\n");
-}

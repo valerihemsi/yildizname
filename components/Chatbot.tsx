@@ -13,16 +13,6 @@ interface ChatbotProps {
   yorum: string;
 }
 
-const BOLUMLER = [
-  "İsmin Sırrı",
-  "Karakter ve Kader",
-  "Sağlık ve Enerji",
-  "Kader Yolu",
-  "Evlilik ve Aşk",
-  "Çocuk ve Yuva",
-  "Kariyer ve Para",
-];
-
 export default function Chatbot({ veriler, yorum }: ChatbotProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
@@ -122,10 +112,6 @@ export default function Chatbot({ veriler, yorum }: ChatbotProps) {
     }
   };
 
-  const askSection = (bolum: string) => {
-    sendMessage(`"${bolum}" bölümünü çok daha derinlemesine aç. Yüzeydeki bilgilerin altına in, yeni sembolik bağlantılar kur, somut hayata yansımalarını söyle.`);
-  };
-
   return (
     <section className="mt-16 giris-3">
       <div className="text-center mb-10">
@@ -138,21 +124,8 @@ export default function Chatbot({ veriler, yorum }: ChatbotProps) {
           Sırrı Derinleştir
         </h2>
         <p className="text-metin-soluk/60 text-xs mt-3 italic font-light">
-          bir bölüm seç ya da kendi sorunu sor
+          kendi sorunu yaz
         </p>
-      </div>
-
-      <div className="flex flex-wrap gap-2 justify-center mb-8">
-        {BOLUMLER.map((bolum) => (
-          <button
-            key={bolum}
-            onClick={() => askSection(bolum)}
-            disabled={streaming}
-            className="text-[10px] tracking-[0.25em] uppercase px-3 py-2 border border-vurgu/25 text-metin-soluk hover:text-vurgu hover:border-vurgu/60 hover:bg-vurgu/[0.04] transition-all duration-500 rounded-full font-light disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-metin-soluk disabled:hover:border-vurgu/25 disabled:hover:bg-transparent"
-          >
-            {bolum}
-          </button>
-        ))}
       </div>
 
       {messages.length > 0 && (
