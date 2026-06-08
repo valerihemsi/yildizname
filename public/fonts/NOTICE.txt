@@ -1,0 +1,11 @@
+Bundled fonts — SIL Open Font License 1.1 (OFL)
+
+- Cormorant Garamond — © The Cormorant Project Authors
+  https://github.com/google/fonts/tree/main/ofl/cormorantgaramond
+- Amiri — © Khaled Hosny, The Amiri Project (Arabic ebced spelling)
+  https://github.com/google/fonts/tree/main/ofl/amiri
+
+Both are licensed under the SIL Open Font License, Version 1.1, which permits
+embedding and redistribution. Full license: https://openfontlicense.org
+
+These files are used only to embed text into the generated PDF reports.

@@ -15,7 +15,21 @@ export default function RaporPage() {
   const [yorum, setYorum] = useState("");
   const [veriler, setVeriler] = useState<HesaplananVeriler | null>(null);
   const [hata, setHata] = useState<string | null>(null);
+  const [pdfYapiliyor, setPdfYapiliyor] = useState(false);
   const startedRef = useRef(false);
+
+  async function indirPdf() {
+    if (!veriler || !yorum || pdfYapiliyor) return;
+    setPdfYapiliyor(true);
+    try {
+      const { downloadRaporPdf } = await import("@/components/RaporPdf");
+      await downloadRaporPdf(veriler, yorum);
+    } catch {
+      setHata("PDF oluşturulamadı. Lütfen tekrar deneyin.");
+    } finally {
+      setPdfYapiliyor(false);
+    }
+  }
 
   useEffect(() => {
     if (startedRef.current) return;
@@ -180,6 +194,33 @@ export default function RaporPage() {
 
         {!streaming && veriler && yorum && (
           <Chatbot veriler={veriler} yorum={yorum} />
+        )}
+
+        {!streaming && veriler && yorum && (
+          <div className="flex items-center justify-center my-12">
+            <span className="hat-yatay flex-1 max-w-[60px]" />
+            <button
+              onClick={indirPdf}
+              disabled={pdfYapiliyor}
+              className="group inline-flex items-center gap-3 mx-4 px-7 py-3.5 text-[11px] tracking-[0.35em] uppercase font-light border border-vurgu/40 text-vurgu/90 hover:text-vurgu hover:border-vurgu/80 hover:bg-vurgu/[0.06] transition-all duration-500 rounded-sm disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              {pdfYapiliyor ? (
+                <>
+                  <span className="w-1 h-1 rounded-full bg-vurgu nefes" />
+                  <span>hazırlanıyor</span>
+                  <span className="w-1 h-1 rounded-full bg-vurgu nefes" />
+                </>
+              ) : (
+                <>
+                  <span>PDF olarak indir</span>
+                  <span className="opacity-70 group-hover:translate-y-0.5 transition-transform duration-500">
+                    ↓
+                  </span>
+                </>
+              )}
+            </button>
+            <span className="hat-yatay flex-1 max-w-[60px]" />
+          </div>
         )}
 
         <Disclaimer />
